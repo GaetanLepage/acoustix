@@ -5,3 +5,9 @@ description = "Dynamic acoustic simulation for robotic navigation and localizati
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = []
+
+[project.optional-dependencies]
+test = [
+    "pytest",
+    "pytest-xdist",
+]
