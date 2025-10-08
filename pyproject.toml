@@ -11,3 +11,9 @@ test = [
     "pytest",
     "pytest-xdist",
 ]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+extend-select = ["I"]
