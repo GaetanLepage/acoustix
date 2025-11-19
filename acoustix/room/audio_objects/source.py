@@ -127,6 +127,7 @@ class WhiteNoiseSource(NoiseSource):
         self,
         num_samples: int,
     ) -> np.ndarray:
+        assert num_samples > 0, "WhiteNoiseSource requires a positive `num_samples`"
         noise_signal = np.random.normal(
             loc=0,
             scale=1,

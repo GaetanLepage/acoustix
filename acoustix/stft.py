@@ -206,35 +206,40 @@ def compute_stft(
 
     num_time_samples: int = audio_signal.shape[-1]
 
+    complex_stft: Stft
     stft: Stft
 
     # Numpy array
     if isinstance(audio_signal, np.ndarray):
-        stft = scipy.signal.stft(
+        complex_stft = scipy.signal.stft(
             x=audio_signal,
             fs=freq,
             nperseg=nperseg,
         )[-1]
 
         if log_stft:
-            stft = np.absolute(stft)
+            stft = np.absolute(complex_stft)
             assert stft.dtype == np.float32
             stft = 20.0 * np.log10(stft)
+        else:
+            stft = complex_stft
 
     # Torch tensor
     else:
-        stft = torch.stft(
+        complex_stft = torch.stft(
             input=audio_signal,
             n_fft=nperseg,
             window=torch.hann_window(window_length=nperseg).cuda(),
         ).abs()
 
         if log_stft:
-            stft = 20.0 * torch.log10(stft)
+            stft = 20.0 * torch.log10(complex_stft)
+        else:
+            stft = complex_stft
 
     if plot:
-        plot_stft(stft[0])
-        plot_stft(stft[1])
+        plot_stft(complex_stft[0], log=log_stft)
+        plot_stft(complex_stft[1], log=log_stft)
 
     # Expected shape
     noverlap: int = nperseg // 2
