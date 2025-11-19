@@ -15,6 +15,8 @@ dependencies = [
     "torchaudio>=2.9.1",
     "pyroomacoustics>=0.8.6",
     "scipy>=1.16.3",
+    "gpurir",
+    "pyqt6>=6.10.0",
 ]
 
 [tool.ruff]
@@ -23,5 +25,12 @@ line-length = 100
 [tool.ruff.lint]
 extend-select = ["I"]
 
+[tool.uv.sources]
+gpurir = { git = "https://github.com/DavidDiazGuerra/gpuRIR" }
+matplotlib-sixel = { git = "https://github.com/GaetanLepage/matplotlib-sixel.git" }
+
 [dependency-groups]
-test = ["pytest>=9.0.1"]
+test = [
+    "pytest>=9.0.1",
+    "matplotlib-sixel",
+]
