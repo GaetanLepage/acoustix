@@ -1,5 +1,5 @@
+import multiprocessing as mp
 import os
-from multiprocessing import Pool
 
 import numpy as np
 
@@ -46,5 +46,7 @@ def func_room(cnt):
 
 
 def test_gpurir_multiprocessing() -> None:
-    p = Pool(os.cpu_count())
-    p.map(func_room, range(1000))
+    # Use 'spawn' context to avoid infinite hanging when running pytest
+    ctx = mp.get_context("spawn")
+    with ctx.Pool(os.cpu_count()) as p:
+        p.map(func_room, range(1000))
