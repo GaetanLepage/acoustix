@@ -5,7 +5,6 @@ LibriSpeech data set loader.
 import logging
 import os
 import random as rd
-import sys
 from os import path
 from typing import Iterator
 
