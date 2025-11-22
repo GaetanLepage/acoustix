@@ -6,7 +6,7 @@ import torch
 from tqdm import tqdm
 
 from acoustix import audio_simulator as sim
-from acoustix import microphone_array as arrays
+from acoustix import microphone_arrays as arrays
 from acoustix import room
 
 SEED: int = 0
@@ -22,7 +22,7 @@ def test_audio_simulator() -> None:
 
     array_pos: np.ndarray = np.array([2, 2, 1.2])
     array_ori: np.ndarray = np.array([0, 1, 0])
-    # mic_array: sim.MicArray = arrays.microphone_array.MonoArray(
+    # mic_array: sim.MicArray = arrays.MonoArray(
     #     position=array_pos,
     # )
     mic_array: sim.MicArray = arrays.BinauralArray(
@@ -31,7 +31,7 @@ def test_audio_simulator() -> None:
         orientation=array_ori,
         mic_pattern="card",
     )
-    # mic_array: sim.MicArray = arrays.microphone_array.SquareArray(
+    # mic_array: sim.MicArray = arrays.SquareArray(
     #     center_to_mic_dist=5,
     #     position=array_pos,
     #     orientation=array_ori,

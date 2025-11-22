@@ -7,7 +7,7 @@ import torch
 from tqdm import tqdm
 
 import acoustix as acx
-from acoustix.microphone_array import BinauralArray
+from acoustix.microphone_arrays import BinauralArray
 
 
 def benchmark_simulator(

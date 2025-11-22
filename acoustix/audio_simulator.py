@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import scipy.signal
 
-from .microphone_array import MicArray, compute_ild_ipd_from_stft
+from .microphone_arrays import MicArray, compute_ild_ipd_from_stft
 from .room import IllegalPosition, Room
 from .room.audio_objects.source import (
     NoiseSource,

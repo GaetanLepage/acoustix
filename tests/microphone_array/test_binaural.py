@@ -1,7 +1,7 @@
 import numpy as np
 
 from acoustix.audio_simulator import AudioSimulator
-from acoustix.microphone_array import BinauralArray
+from acoustix.microphone_arrays import BinauralArray
 from acoustix.room import GpuRirRoom, Room
 from acoustix.stft import plot_stft
 
