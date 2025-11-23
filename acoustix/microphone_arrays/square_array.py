@@ -32,7 +32,7 @@ class SquareArray(MicArray):
         self._center_to_mic_dist: float = center_to_mic_dist / 100
 
         assert mic_pattern == "omni", (
-            "The quad mic array only support omnidirectional microphones for now"
+            "The square mic array only support omnidirectional microphones for now"
         )
 
         super().__init__(

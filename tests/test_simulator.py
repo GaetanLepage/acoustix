@@ -5,9 +5,10 @@ import numpy as np
 import torch
 from tqdm import tqdm
 
-from acoustix import audio_simulator as sim
-from acoustix import microphone_arrays as arrays
-from acoustix import room
+from acoustix.audio_simulator import AudioSimulator
+from acoustix.microphone_arrays import BinauralArray, MicArray
+from acoustix.room import GpuRirRoom, Room
+from acoustix.stft import plot_stft
 
 SEED: int = 0
 N_STEPS: int = 30
@@ -15,7 +16,45 @@ DURATION: float = 6.0
 N_SOURCES: int = 2
 
 
-def test_audio_simulator() -> None:
+def test_sim_basic() -> None:
+    room: Room = GpuRirRoom()
+    binaural_array: BinauralArray = BinauralArray(
+        mic_dist=4,
+        position=np.array([1, 2, 1.8]),
+        orientation=np.array([0, -1.0, 0]),
+    )
+    simulator: AudioSimulator = AudioSimulator(
+        room=room,
+        mic_array=binaural_array,
+        n_speech_sources=1,
+        max_audio_samples=4 * room.sampling_frequency,
+    )
+
+    simulator.step()
+
+    signal: np.ndarray = simulator.get_agent_audio()
+    cross: np.ndarray = np.correlate(
+        signal[0],
+        signal[1],
+    )
+    print(cross)
+    freqs, times, stft = simulator.get_agent_stft()
+    plot_stft(stft=stft[0], freqs=freqs, times=times, log=True)
+
+    # Rotate the agent to the left
+    simulator.rotate_agent_left()
+    simulator.step()
+    freqs, times, stft = simulator.get_agent_stft()
+    plot_stft(stft=stft[0], freqs=freqs, times=times, log=True)
+
+    # Add a noise source
+    simulator.add_noise_source(noise_source_type="white_noise")
+    simulator.step()
+    freqs, times, stft = simulator.get_agent_stft()
+    plot_stft(stft=stft[0], freqs=freqs, times=times, log=True)
+
+
+def test_sim_loop() -> None:
     random.seed(SEED)
     np.random.seed(SEED)
     torch.manual_seed(SEED)
@@ -25,7 +64,7 @@ def test_audio_simulator() -> None:
     # mic_array: sim.MicArray = arrays.MonoArray(
     #     position=array_pos,
     # )
-    mic_array: sim.MicArray = arrays.BinauralArray(
+    mic_array: MicArray = BinauralArray(
         mic_dist=10,
         position=array_pos,
         orientation=array_ori,
@@ -44,10 +83,10 @@ def test_audio_simulator() -> None:
     # )
 
     rt_60: float = 0.5
-    _room: room.Room = room.GpuRirRoom(rt_60=rt_60)
+    _room: Room = GpuRirRoom(rt_60=rt_60)
     # _room: room.Room = room.PyRoomAcousticsRoom(rt_60=rt_60)
 
-    simulator: sim.AudioSimulator = sim.AudioSimulator(
+    simulator: AudioSimulator = AudioSimulator(
         mic_array=mic_array,
         room=_room,
         n_speech_sources=N_SOURCES,

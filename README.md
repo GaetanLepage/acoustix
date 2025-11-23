@@ -97,7 +97,7 @@ TODO
 - `MonoArray`
 - `BinauralArray`
 - `TriangleArray`
-- `QuadArray`
+- `SquareArray`
 - `UniformLinearArray`
 
 
