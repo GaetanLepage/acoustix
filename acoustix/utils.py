@@ -1,6 +1,8 @@
 import numpy as np
 import scipy
 import soundcard as sc
+import torch
+from torch import Tensor
 
 
 def to_float32(
@@ -171,6 +173,22 @@ def compute_dist_and_doa(
     )
 
     return dist_to_source, doa
+
+
+def angular_dist_torch(
+    theta_1: Tensor,
+    theta_2: Tensor,
+) -> Tensor:
+    """
+    Symmetric angular distance
+
+    d(θ_1, θ_2) = π - ||θ_2 - θ_1|[2π] - π|
+    """
+    delta: Tensor = torch.abs(
+        theta_2 - theta_1,
+    )
+    delta = torch.remainder(delta, 2 * torch.pi)
+    return torch.pi - torch.abs(delta - torch.pi)
 
 
 def angular_dist_numpy(
