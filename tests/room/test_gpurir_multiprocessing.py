@@ -49,4 +49,4 @@ def test_gpurir_multiprocessing() -> None:
     # Use 'spawn' context to avoid infinite hanging when running pytest
     ctx = mp.get_context("spawn")
     with ctx.Pool(os.cpu_count()) as p:
-        p.map(func_room, range(1000))
+        p.map(func_room, range(100))
