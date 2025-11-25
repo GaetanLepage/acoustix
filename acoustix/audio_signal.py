@@ -137,7 +137,7 @@ class AudioSignalObject:
             del self.signal
 
         if hasattr(self, "_signal_tensor"):
-            del self.signal_tensor
+            del self._signal_tensor
 
         if hasattr(self, "signal_shape"):
             del self.signal_shape
