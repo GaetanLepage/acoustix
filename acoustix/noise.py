@@ -4,12 +4,24 @@ from .room.audio_objects import Source
 
 
 class RandomNoiseSource(Source):
+    """
+    A noise source with configurable SNR.
+    """
+
     def __init__(
         self,
         name: str,
         position: np.ndarray,
         snr: float,
     ) -> None:
+        """
+        Initialize a RandomNoiseSource.
+
+        Args:
+            name: Name identifier for the source
+            position: 3D position of the source in the room
+            snr: Signal-to-noise ratio for the noise source
+        """
         super().__init__(
             name=name,
             position=position,
@@ -19,6 +31,12 @@ class RandomNoiseSource(Source):
 
     @property
     def signal(self):
+        """
+        Get the noise signal (placeholder implementation).
+
+        Returns:
+            Noise signal array
+        """
         pass
 
         # Scale noise
@@ -82,6 +100,16 @@ def compute_snr(
     signal: np.ndarray,
     noise: np.ndarray,
 ) -> float:
+    """
+    Compute the signal-to-noise ratio between signal and noise.
+
+    Args:
+        signal: Clean signal array
+        noise: Noise array
+
+    Returns:
+        SNR in decibels
+    """
     signal_power: float = np.sum(signal**2) / len(signal)
     noise_power: float = np.sum(noise**2) / len(noise)
     return 10 * np.log10(signal_power / noise_power)
@@ -92,6 +120,17 @@ def scale_noise(
     noise_signal: np.ndarray,
     target_snr: float,
 ) -> np.ndarray:
+    """
+    Scale noise signal to achieve target SNR with speech signal.
+
+    Args:
+        speech_signal: Clean speech signal
+        noise_signal: Noise signal to scale
+        target_snr: Desired SNR in decibels
+
+    Returns:
+        Scaled noise signal
+    """
     power_speech: float = np.sum(speech_signal**2) / len(speech_signal)
     power_noise: float = np.sum(noise_signal**2) / len(noise_signal)
     # np.exp is wrong here ? We should raise to 10^

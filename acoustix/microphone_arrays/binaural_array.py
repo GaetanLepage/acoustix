@@ -24,9 +24,14 @@ class BinauralArray(MicArray):
         mic_pattern: str = "card",
     ) -> None:
         """
+        Initialize a binaural microphone array.
+
         Args:
-            position (np.ndarray):
-            mic_dist (float):       The distance between the two microphones in CENTIMETERS.
+            position: 3D position of the array center
+            orientation: 3D orientation vector (optional)
+            mic_dist: Distance between two microphones in CENTIMETERS
+            mic_relative_orientation: Relative orientation of microphones in degrees
+            mic_pattern: Microphone pattern (defaults to "card")
         """
 
         self._mic_dist: float = mic_dist / 100
@@ -55,6 +60,12 @@ class BinauralArray(MicArray):
 
     @property
     def radius(self) -> float:
+        """
+        Get the radius of the binaural array.
+
+        Returns:
+            Radius equal to half the inter-microphone distance
+        """
         return self._mic_dist
 
     def _init_microphones(self) -> list[Microphone]:

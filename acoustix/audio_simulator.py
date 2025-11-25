@@ -60,6 +60,25 @@ class AudioSimulator:
         audio_upsampling_freq: int = -1,
         n_mock_samples: int = 0,
     ) -> None:
+        """
+        Initialize an AudioSimulator instance.
+
+        Args:
+            room: Room object where the simulation takes place
+            mic_array: Microphone array representing the acoustic agent
+            source_height: Height at which sources are placed in the room
+            n_speech_sources: Number of speech sources to add to the simulation
+            source_continuous: Whether to use continuous speech sources
+            speech_source_base_seed: Base seed for speech source randomization
+            muted_source: Whether to create muted sources (no audio output)
+            noise_source: Whether to add a noise source to the simulation
+            noise_source_type: Type of noise source (e.g., "white_noise")
+            stft: STFT module for audio processing
+            max_audio_samples: Maximum number of audio samples to simulate (-1 for unlimited)
+            min_stft_frames: Minimum number of STFT frames required
+            audio_upsampling_freq: Frequency for audio upsampling (-1 to disable)
+            n_mock_samples: Number of mock samples to simulate and discard
+        """
         self._logger: logging.Logger = logging.getLogger(__name__)
 
         self.room: Room = room
@@ -187,6 +206,12 @@ class AudioSimulator:
 
     @property
     def n_sources(self) -> int:
+        """
+        Get the total number of sources in the simulation.
+
+        Returns:
+            Total number of sources (speech + noise)
+        """
         return len(self.sources)
 
     @property
@@ -257,6 +282,16 @@ class AudioSimulator:
         new_position: Optional[np.ndarray] = None,
         new_orientation: Optional[np.ndarray] = None,
     ) -> None:
+        """
+        Move the acoustic agent to a new position and/or orientation.
+
+        Args:
+            new_position: New 3D position for the agent (None to keep current)
+            new_orientation: New 3D orientation for the agent (None to keep current)
+
+        Raises:
+            IllegalPosition: If the new position is outside the room
+        """
         if new_position is None:
             new_position = self.agent_position
 

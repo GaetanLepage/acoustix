@@ -18,6 +18,18 @@ def _data_set_loading_loop(
     load_audio_tensor: bool,
     dataset_path: str,
 ) -> list[AudioSignalObject]:
+    """
+    Internal function to load CBF dataset with specific indices.
+
+    Args:
+        keep_indices: List of sample indices to keep
+        load_audio_array: Whether to load audio as numpy arrays
+        load_audio_tensor: Whether to load audio as torch tensors
+        dataset_path: Path to the CBF dataset
+
+    Returns:
+        List of AudioSignalObject objects
+    """
     LOGGER.info("Loading dataset '%s'", dataset_path)
 
     data_set: list[AudioSignalObject] = []

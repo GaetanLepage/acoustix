@@ -46,6 +46,15 @@ NORMAL_VECTOR: dict[Orientation, np.ndarray] = {
 
 
 def orientation_from_vec(vec: np.ndarray) -> Orientation:
+    """
+    Convert a 2D/3D vector to a discrete Orientation enum.
+
+    Args:
+        vec: 2D or 3D orientation vector
+
+    Returns:
+        Corresponding Orientation enum value
+    """
     assert vec.ndim == 1
     assert len(vec) in (2, 3)
 

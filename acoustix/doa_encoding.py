@@ -10,6 +10,15 @@ DEFAULT_SIGMA: float = 5 * torch.pi / 180
 
 
 def get_ref_doas(doa_resolution: int) -> Tensor:
+    """
+    Generate reference DOA angles spanning the full circle.
+
+    Args:
+        doa_resolution: Number of DOA angles to generate
+
+    Returns:
+        Tensor of DOA angles from -π to π
+    """
     ref_doas: Tensor = torch.linspace(
         start=-torch.pi,
         end=torch.pi,
@@ -22,6 +31,16 @@ def _get_distance_matrix(
     gt_doas: Tensor,
     doa_resolution: int,
 ) -> Tensor:
+    """
+    Compute angular distance matrix between ground truth DOAs and reference DOAs.
+
+    Args:
+        gt_doas: Ground truth DOA angles
+        doa_resolution: Number of reference DOA angles
+
+    Returns:
+        Distance matrix of shape [N_sources, DOA_resolution]
+    """
     ref_doas: Tensor = get_ref_doas(doa_resolution=doa_resolution)
 
     # Shape: [N_sources, DOA_res]
@@ -58,8 +77,13 @@ def encode_sources(
         https://ieeexplore.ieee.org/document/9357962
 
     Args:
-        - source_doas (Tensor | Sequence[float]) a list of DoA angles in radians
-        - sigma (
+        sources_doas: A list of DoA angles in radians
+        sigma: Standard deviation of the Gaussian encoding
+        doa_resolution: Number of DOA angles in the output spectrum
+        heats: Heat values for each source (can be scalar, list, or tensor)
+
+    Returns:
+        DOA spectrum encoding as a tensor
     """
     doa_vec: Tensor = torch.zeros(
         size=(doa_resolution,),

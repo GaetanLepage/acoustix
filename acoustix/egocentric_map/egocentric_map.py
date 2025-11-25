@@ -15,12 +15,24 @@ DEFAULT_EGOCENTRIC_MAP_SIGMA: float = 0.5
 
 
 class EgocentricMap:
+    """
+    Egocentric acoustic map for 2D DoA representation.
+    """
+
     def __init__(
         self,
         size: float,
         size_pixel: int,
         doa_res: int = DEFAULT_DOA_RESOLUTION,
     ) -> None:
+        """
+        Initialize an egocentric map.
+
+        Args:
+            size: Physical size of the map in meters
+            size_pixel: Size of the map in pixels
+            doa_res: DoA resolution for the map
+        """
         self.map: np.ndarray
 
         self.size: float = size

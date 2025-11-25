@@ -36,6 +36,15 @@ def to_float32(
 
 
 def normalize_vector(vec: np.ndarray) -> np.ndarray:
+    """
+    Normalize a vector to unit length.
+
+    Args:
+        vec: Input vector
+
+    Returns:
+        Normalized unit vector
+    """
     return vec / np.linalg.norm(vec)
 
 
@@ -64,9 +73,19 @@ def rotate_2d_vector(
     angle: float,
 ) -> np.ndarray:
     """
+    Rotate a 2D vector by a given angle.
+
+    References:
     https://matthew-brett.github.io/teaching/rotation_2d.html
     https://stackoverflow.com/questions/14607640/rotating-a-vector-in-3d-space
     https://en.wikipedia.org/wiki/Euler_angles
+
+    Args:
+        vec: 2D vector to rotate
+        angle: Rotation angle in radians
+
+    Returns:
+        Rotated 2D vector
     """
     assert -np.pi <= angle <= np.pi
 

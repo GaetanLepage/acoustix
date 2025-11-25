@@ -23,6 +23,13 @@ StftType = TypeVar("StftType")
 
 
 class StftModule(Generic[StftType]):
+    """
+    Short-Time Fourier Transform (STFT) processing module.
+
+    This module computes STFT of audio signals with configurable parameters
+    including frequency filtering, windowing, and log scaling.
+    """
+
     default_config: eu.AttrDict = eu.AttrDict(
         freq=16_000,
         window_length=512,
@@ -40,6 +47,13 @@ class StftModule(Generic[StftType]):
         config: eu.AttrDict | None = None,
         **kwargs: dict[str, Any],
     ) -> None:
+        """
+        Initialize an STFT module.
+
+        Args:
+            config: Configuration dictionary for STFT parameters
+            **kwargs: Additional configuration parameters
+        """
         self._logger: logging.Logger = logging.getLogger(__name__)
 
         self.config: eu.AttrDict = eu.combine_dicts(
@@ -75,6 +89,15 @@ class StftModule(Generic[StftType]):
         self,
         num_signal_samples: int,
     ) -> tuple[int, int]:
+        """
+        Calculate the output dimensions of the STFT.
+
+        Args:
+            num_signal_samples: Number of samples in the input signal
+
+        Returns:
+            Tuple of (num_frequency_bins, num_time_frames)
+        """
         num_freq_bins: int = (self.window_length // 2) + 1
 
         if self._max_freq_index is not None:
@@ -196,6 +219,20 @@ def compute_stft(
     plot: bool = False,
     save_dir: str = "",
 ) -> Stft:
+    """
+    Compute the Short-Time Fourier Transform of an audio signal.
+
+    Args:
+        audio_signal: Input audio signal (numpy array or torch tensor)
+        freq: Sampling frequency of the audio signal
+        nperseg: Length of each STFT segment
+        log_stft: Whether to return log-magnitude STFT
+        plot: Whether to plot the STFT
+        save_dir: Directory to save the plot (if plotting)
+
+    Returns:
+        STFT of the audio signal
+    """
     assert audio_signal.dtype == np.float32
 
     num_channels: int = 1
@@ -268,7 +305,16 @@ def tensor_stft_from_signal(
     log_stft: bool = True,
 ) -> StftTensor:
     """
+    Compute STFT using PyTorch backend.
+
     TODO: Maybe to a backend-agnostic version (have a `backend` str argument)
+
+    Args:
+        audio_signal: Input audio signal (numpy array or torch tensor)
+        log_stft: Whether to return log-magnitude STFT
+
+    Returns:
+        STFT as a PyTorch tensor
     """
 
     audio_signal_tensor: Tensor
@@ -300,6 +346,18 @@ def plot_stft(
     vmax: float | None = None,
     close: bool = True,
 ) -> None:
+    """
+    Plot the spectrogram of an STFT.
+
+    Args:
+        stft: STFT to plot
+        times: Time array for x-axis (optional)
+        freqs: Frequency array for y-axis (optional)
+        log: Whether to display in log scale
+        vmin: Minimum value for colormap
+        vmax: Maximum value for colormap
+        close: Whether to close the plot after displaying
+    """
     fig: matplotlib.figure.Figure
     axes: matplotlib.axes.Axes
     fontsize: int = 18

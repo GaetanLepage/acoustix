@@ -31,6 +31,15 @@ class AudioSignalObject:
         load_audio_array: bool = False,
         load_audio_tensor: bool = False,
     ) -> None:
+        """
+        Initialize an AudioSignalObject.
+
+        Args:
+            file_path: Path to the audio file on disk
+            name: Optional name for the audio signal
+            load_audio_array: Whether to load the audio as numpy array on initialization
+            load_audio_tensor: Whether to load the audio as torch tensor on initialization
+        """
         self._logger: logging.Logger = logging.getLogger(self.__class__.__name__)
 
         self.name: str = name
@@ -102,6 +111,11 @@ class AudioSignalObject:
         self.signal_dim = self.signal.ndim
 
     def load_audio_tensor(self) -> None:
+        """
+        Load the audio file as a torch tensor.
+
+        Directly exits if the signal is already loaded.
+        """
         # Directly exit if the signal is already loaded
         if hasattr(self, "_signal_tensor") and self.signal_tensor is not None:
             return
@@ -140,10 +154,22 @@ class AudioSignalObject:
 
     @property
     def normalized_signal(self) -> AudioSignalNumpyFloat32:
+        """
+        Get the audio signal as float32 normalized array.
+
+        Returns:
+            The audio signal converted to float32 format
+        """
         return utils.to_float32(signal=self.signal)
 
     @property
     def n_channels(self) -> int:
+        """
+        Get the number of channels in the audio signal.
+
+        Returns:
+            Number of audio channels (1 for mono, 2 for stereo, etc.)
+        """
         if self.signal_dim > 1:
             return self.signal_shape[0]
 
@@ -152,6 +178,15 @@ class AudioSignalObject:
 
     @property
     def n_samples(self) -> int:
+        """
+        Get the number of samples in the audio signal.
+
+        Returns:
+            Number of audio samples
+
+        Raises:
+            AttributeError: If the signal has not been loaded yet
+        """
         if not hasattr(self, "signal_shape") or self.signal_shape is None:
             raise AttributeError(
                 "You have to load the signal before asking for the number of samples."
@@ -160,15 +195,36 @@ class AudioSignalObject:
 
     @property
     def duration(self) -> float:
+        """
+        Get the duration of the audio signal in seconds.
+
+        Returns:
+            Duration in seconds
+        """
         return self.n_samples / self.sample_rate
 
     def is_mono(self) -> bool:
+        """
+        Check if the audio signal is mono.
+
+        Returns:
+            True if the signal has exactly one channel
+        """
         return self.n_channels == 1
 
     def is_stereo(self) -> bool:
+        """
+        Check if the audio signal is stereo.
+
+        Returns:
+            True if the signal has exactly two channels
+        """
         return self.n_channels == 2
 
     def play(self) -> None:
+        """
+        Play the audio signal through the system audio output.
+        """
         utils.play_audio(
             audio_signal=self.signal,
             sample_rate=self.sample_rate,
@@ -177,6 +233,12 @@ class AudioSignalObject:
         )
 
     def save(self, path: str) -> None:
+        """
+        Save the audio signal to a WAV file.
+
+        Args:
+            path: Path where to save the audio file
+        """
         wavfile.write(
             filename=path,
             rate=self.sample_rate,
@@ -185,6 +247,12 @@ class AudioSignalObject:
 
     @staticmethod
     def plot_signals(signals: list["AudioSignalObject"]) -> None:
+        """
+        Plot multiple audio signals on the same graph.
+
+        Args:
+            signals: List of AudioSignalObject instances to plot
+        """
         for signal in signals:
             if signal.signal is None:
                 signal.load_audio()
@@ -216,6 +284,15 @@ class SpeechSignal(AudioSignalObject):
         load_audio_array: bool = False,
         load_audio_tensor: bool = False,
     ) -> None:
+        """
+        Initialize a SpeechSignal object.
+
+        Args:
+            file_path: Path to the audio file on disk
+            transcript: Text transcript of the speech content
+            load_audio_array: Whether to load the audio as numpy array on initialization
+            load_audio_tensor: Whether to load the audio as torch tensor on initialization
+        """
         super().__init__(
             file_path=file_path,
             load_audio_array=load_audio_array,

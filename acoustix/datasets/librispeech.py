@@ -33,6 +33,19 @@ def _data_set_loading_loop(
     min_duration: float,
     n_samples: int = -1,
 ) -> list[SpeechSignal]:
+    """
+    Internal function to load LibriSpeech dataset.
+
+    Args:
+        load_audio_array: Whether to load audio as numpy arrays
+        load_audio_tensor: Whether to load audio as torch tensors
+        dataset_path: Path to the LibriSpeech dataset
+        min_duration: Minimum duration for audio samples
+        n_samples: Maximum number of samples to load (-1 for all)
+
+    Returns:
+        List of SpeechSignal objects
+    """
     LOGGER.info("Loading dataset '%s'", dataset_path)
     if n_samples < 0:
         n_samples = NUM_SAMPLES
