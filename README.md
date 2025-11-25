@@ -2,14 +2,18 @@
 
 **Acoustix** is an audio simulation library targeting research in acoustics for robotics.
 It allows to simulate a reverberant acoustic environment where multiple sources and microphones can be modeled.
-The agent (a microphone array) is placed in a room with specific
+The agent (a microphone array) is placed in a room with specific acoustic properties.
+Multiple speech sound sources can then be added to model speaking humans.
+**Acoustix** will simulate the multi-channel audio listened by the microphone array.
 
 This project was developed as part of my PhD project, realized in the [RobotLearn team](https://team.inria.fr/robotlearn), at Inria Grenoble, under the supervision of [Dr. Xavier Alameda](https://xavirema.eu), [Pr. Laurent Girin](https://www.gipsa-lab.grenoble-inp.fr/user/laurent.girin) and [Dr. Chris Reinke](https://www.chris-reinke.com/).
-You can learn more about this library, its motivations, its applications and the relevant scientific and technical decisions in my [PhD manuscript](TODO):
+You can learn more about this library, its motivations, its applications and the relevant scientific and technical decisions in my [PhD manuscript](https://theses.fr/s253609):
 - Chapter 2: Introduction of acoustics in reverberant environments, and presentation of the _Acoustics_ library
 - Chapter 3: Deep-learning-based sound source localization
 - Chapter 4: Active sound source localization
 - Chapter 5: Deep reinforcement learning for sound-driven navigation
+
+The code for all my experiments can be found [here](https://gitlab.inria.fr/robotlearn/rl-audio-nav).
 
 
 ## Install
