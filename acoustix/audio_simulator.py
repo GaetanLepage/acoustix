@@ -708,5 +708,6 @@ class AudioSimulator:
 
         if show:
             plt.show()
+            plt.close()
 
         return fig, ax
