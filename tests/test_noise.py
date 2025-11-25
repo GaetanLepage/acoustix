@@ -34,6 +34,7 @@ def test_noise_scaling() -> None:
 
     plt.plot(speech_signal)
     plt.show()
+    plt.close()
 
     for snr in (-5, 0, 5):
         print("target_snr = ", snr)
