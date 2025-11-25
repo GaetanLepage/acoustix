@@ -2,6 +2,7 @@ import numpy as np
 import scipy
 import soundcard as sc
 import torch
+from scipy.io import wavfile
 from torch import Tensor
 
 
@@ -102,6 +103,22 @@ def play_audio(
         data=audio_signal.T,
         samplerate=sample_rate,
         blocking=True,
+    )
+
+
+def save_audio(
+    audio_signal: np.ndarray,
+    filename: str,
+    sample_rate: int = 16_000,
+) -> None:
+    audio_signal = to_float32(audio_signal)
+    print(audio_signal.dtype)
+    print(audio_signal.min())
+    print(audio_signal.max())
+    wavfile.write(
+        filename=filename,
+        rate=sample_rate,
+        data=audio_signal.T,
     )
 
 
