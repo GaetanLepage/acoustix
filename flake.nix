@@ -1,5 +1,5 @@
 {
-  description = "rlan nix flake";
+  description = "acoustix nix flake";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -75,6 +75,9 @@
               libz
               stdenv'.cc.cc
               zstd
+
+              # torchcodec (torchaudio)
+              ffmpeg
 
               # matplotlib
               dbus

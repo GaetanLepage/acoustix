@@ -18,6 +18,7 @@ dependencies = [
     "gpurir",
     "pyqt6>=6.10.0",
     "opencv-python>=4.11.0.86",
+    "torchcodec>=0.8.1",
 ]
 
 [build-system]
