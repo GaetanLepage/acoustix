@@ -142,8 +142,8 @@ class AudioSignalObject:
         if hasattr(self, "signal_shape"):
             del self.signal_shape
 
-        if hasattr(self, "signal_ndim"):
-            del self.signal_ndim
+        if hasattr(self, "signal_dim"):
+            del self.signal_dim
 
     @property
     def signal_tensor(self) -> torch.Tensor:
