@@ -39,6 +39,10 @@ gpurir = { git = "https://github.com/DavidDiazGuerra/gpuRIR" }
 matplotlib-sixel = { git = "https://github.com/GaetanLepage/matplotlib-sixel.git" }
 
 [dependency-groups]
+dev = [
+    "build>=1.3.0",
+    "twine>=6.2.0",
+]
 test = [
     "pytest>=9.0.1",
     "matplotlib-sixel",
