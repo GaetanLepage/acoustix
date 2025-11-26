@@ -15,7 +15,7 @@ You can learn more about this library, its motivations, its applications and the
 
 The code for all my experiments can be found [here](https://gitlab.inria.fr/robotlearn/rl-audio-nav).
 
-## ✨ Key Features
+## Key Features
 
 - **🏠 Realistic Room Acoustics**: Simulate reverberant environments with customizable room dimensions and acoustic properties (RT60, absorption coefficients)
 - **🎤 Multiple Microphone Arrays**: Support for various array geometries including binaural, linear, square, and triangular configurations
