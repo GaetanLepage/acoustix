@@ -26,7 +26,7 @@ The code for all my experiments can be found [here](https://gitlab.inria.fr/robo
 - **🎮 Dynamic Simulation**: Real-time agent movement and source repositioning during simulation
 - **📊 Rich Visualization**: Integrated plotting capabilities for room geometry, source positions, and audio signals
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Installation
 
@@ -91,7 +91,7 @@ doa = simulator.get_doa(source_name="speech_1")                     # Direction 
 distance = simulator.get_source_array_dist(source_name="speech_1")  # Source-array distance
 ```
 
-## 📚 Core Components
+## Core Components
 
 ### AudioSimulator
 
@@ -207,7 +207,7 @@ em.move(
 em.plot()
 ```
 
-## 🎯 Applications
+## Applications
 
 Acoustix is particularly well-suited for:
 
@@ -217,7 +217,7 @@ Acoustix is particularly well-suited for:
 - **🧠 Machine Learning**: Generating training data for deep learning models
 - **📡 Multi-modal Robotics**: Integrating audio with other sensor modalities
 
-## 📖 Advanced Examples
+## Advanced Examples
 
 ### Multi-Source Scenario with Noise
 
@@ -275,15 +275,15 @@ stft = simulator.get_agent_stft()
 # ... visualization code
 ```
 
-## 🧪 Testing
+## Testing
 
 Run the test suite to verify your installation:
 
 ```bash
-pytest tests/
+uv run pytest
 ```
 
-## 📄 Citation
+## Citation
 
 If you use Acoustix in your research, please cite:
 
@@ -297,15 +297,15 @@ If you use Acoustix in your research, please cite:
 }
 ```
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-## 📜 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - This work was funded by the [SPRING](https://spring-h2020.eu/) European project.
 - This simulator is built upon [gpuRIR](https://github.com/DavidDiazGuerra/gpuRIR) and [Pyroomacoustics](https://github.com/LCAV/pyroomacoustics) RIR generation libraries
