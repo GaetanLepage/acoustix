@@ -1,0 +1,44 @@
+cff-version: 1.2.0
+message: "If you use this thesis or its associated materials, please cite it as below."
+title: "From Sound to Action: Deep Learning for Audio-Based Localization and Navigation in Robotics"
+authors:
+  - family-names: Lepage
+    given-names: Gaetan
+    email: gaetan@glepage.com
+    orcid: "https://orcid.org/0000-0002-5134-7763"
+
+# Basic metadata about the repository itself
+url: "https://github.com/GaetanLepage/phd-manuscript"
+repository-code: "https://github.com/GaetanLepage/phd-manuscript"
+keywords:
+  - deep learning
+  - robotic auditory perception
+  - sound source localization
+  - acoustic simulation
+  - robot navigation
+  - deep reinforcement learning
+
+# TODO
+# doi: 10.1234/your-doi-here
+
+date-released: 2025-07-15
+version: "final-version"
+
+preferred-citation:
+  type: thesis
+  title: "From Sound to Action: Deep Learning for Audio-Based Localization and Navigation in Robotics"
+  authors:
+    - family-names: Lepage
+      given-names: Gaetan
+      email: gaetan@glepage.com
+      orcid: "https://orcid.org/0000-0002-5134-7763"
+  thesis-type: PhD
+  year: 2025
+  date-published: 2025-07-15
+  department: "Laboratoire Jean Kuntzmann"
+  institution:
+    - name: "Universite Grenoble Alpes"
+      city: "Grenoble"
+      country: "FR"
+  url: "https://theses.fr/s253609"
+  # doi: 10.1234/your-doi-here # TODO
