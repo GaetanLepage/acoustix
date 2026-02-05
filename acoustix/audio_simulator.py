@@ -126,7 +126,7 @@ class AudioSimulator:
         self._logger.info("Room/simulation frequency: %iHz", self.room.sampling_frequency)
         self.audio_upsampling_freq: int = audio_upsampling_freq
         if self.audio_upsampling_freq > 0:
-            self._logger.warn("Audio will be upsampled to: %iHz", self.audio_upsampling_freq)
+            self._logger.warning("Audio will be upsampled to: %iHz", self.audio_upsampling_freq)
         else:
             self._logger.info("UPSAMPLING DISABLED")
         # The frequency after (eventual upsampling)

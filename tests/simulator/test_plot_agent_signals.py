@@ -15,7 +15,7 @@ simulator = AudioSimulator(
     noise_source=True,
     noise_source_type="white_noise",
     source_continuous=True,
-    max_audio_samples=2 * room.sampling_frequency,
+    max_audio_samples=int(2 * room.sampling_frequency),
 )
 
 # Simulate agent movement through the environment

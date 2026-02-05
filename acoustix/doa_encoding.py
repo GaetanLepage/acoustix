@@ -95,13 +95,15 @@ def encode_sources(
 
     # heats is a scalar
     if isinstance(heats, float) or (isinstance(heats, Tensor) and heats.size == (1,)):
-        heats = heats * torch.ones((len(sources_doas)))
+        heats: Tensor = heats * torch.ones((len(sources_doas)))
     # list of scalars
     if isinstance(heats, list):
         assert len(heats) == len(sources_doas)
     # 1-d tensor
     else:
+        assert isinstance(heats, Tensor)
         assert heats.shape == (len(sources_doas),)
+    assert isinstance(heats, Tensor)
 
     if len(sources_doas) == 0:
         return doa_vec
