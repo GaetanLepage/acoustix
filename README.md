@@ -7,7 +7,7 @@
 It enables realistic simulation of reverberant acoustic environments with multiple sound sources and microphone arrays, making it ideal for developing and testing sound-driven navigation, source localization, and audio-based robotic perception systems.
 
 This project was developed as part of my PhD project, realized in the [RobotLearn team](https://team.inria.fr/robotlearn), at Inria Grenoble, under the supervision of [Dr. Xavier Alameda](https://xavirema.eu), [Pr. Laurent Girin](https://www.gipsa-lab.grenoble-inp.fr/user/laurent.girin) and [Dr. Chris Reinke](https://www.chris-reinke.com/).
-You can learn more about this library, its motivations, its applications and the relevant scientific and technical decisions in my [PhD manuscript](https://theses.fr/s253609):
+You can learn more about this library, its motivations, its applications and the relevant scientific and technical decisions in my [PhD manuscript](https://theses.fr/2025GRALM028):
 - Chapter 2: Introduction of acoustics in reverberant environments, and presentation of the _Acoustics_ library
 - Chapter 3: Deep-learning-based sound source localization
 - Chapter 4: Active sound source localization
@@ -293,7 +293,7 @@ If you use Acoustix in your research, please cite:
   author={Lepage, Gaétan},
   school={Université Grenoble Alpes},
   year={2025},
-  url={https://theses.fr/s253609}
+  url={https://theses.fr/2025GRALM028}
 }
 ```
 
